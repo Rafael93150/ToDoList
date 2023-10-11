@@ -1,25 +1,34 @@
 class User {
-    constructor({ email, firstName, lastName, birthdate }) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthdate = birthdate;
-    }
+	constructor({ email, firstName, lastName, birthdate, password }) {
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthdate = birthdate;
+		this.password = password;
+	}
 
-    isUserValid() {
-        const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-        const isEmailValid = regex.test(this.email);
+	isValidEmail() {
+		const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+		return regex.test(this.email);
+	}
 
-        const hasAtLeast13Years =
-            new Date().getFullYear() - this.birthdate.getFullYear() >= 13;
+	isValidPassword() {
+		const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,40}$/;
+		return regex.test(this.password);
+	}
 
-        return (
-            isEmailValid &&
-            this.firstName.trim().length > 0 &&
-            this.lastName.trim().length > 0 &&
-            hasAtLeast13Years
-        );
-    }
+	isUserValid() {
+		const hasAtLeast13Years =
+			new Date().getFullYear() - this.birthdate.getFullYear() >= 13;
+
+		return (
+			this.isValidEmail() &&
+			this.isValidPassword() &&
+			this.firstName.trim().length > 0 &&
+			this.lastName.trim().length > 0 &&
+			hasAtLeast13Years
+		);
+	}
 }
 
 module.exports = User;
