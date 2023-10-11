@@ -1,8 +1,8 @@
-const Todo = require("../models/todo");
+const Item = require("../models/item");
 
-let todo;
+let item;
 beforeEach(() => {
-	todo = new Todo({
+	item = new Item({
 		name: "name",
 		content: "content",
 		createdAt: new Date(Date.now()),
@@ -11,26 +11,26 @@ beforeEach(() => {
 
 describe("isValidTodo", () => {
 	it("should return true", () => {
-		expect(todo.isValidTodo()).toBe(true);
+		expect(item.isValidTodo()).toBe(true);
 	});
 
 	it("should be invalid if name is empty", () => {
-		todo.name = "";
-		expect(todo.isValidTodo()).toBeFalsy();
+		item.name = "";
+		expect(item.isValidTodo()).toBeFalsy();
 	});
 
 	it("should be invalid if content is empty", () => {
-		todo.content = "";
-		expect(todo.isValidTodo()).toBeFalsy();
+		item.content = "";
+		expect(item.isValidTodo()).toBeFalsy();
 	});
 
 	it("should be invalid if content is too long", () => {
-		todo.content = "x".repeat(1001);
-		expect(todo.isValidTodo()).toBeFalsy();
+		item.content = "x".repeat(1001);
+		expect(item.isValidTodo()).toBeFalsy();
 	});
 
 	it("should be invalid if createdAt is not a date", () => {
-		todo.createdAt = "not a date";
-		expect(todo.isValidTodo()).toBeFalsy();
+		item.createdAt = "not a date";
+		expect(item.isValidTodo()).toBeFalsy();
 	});
 });

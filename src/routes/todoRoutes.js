@@ -1,8 +1,8 @@
-const todo = require("../schemas/todo");
+const item = require("../schemas/item");
 
 module.exports.getTodoById = async (req, res) => {
-	const todo = await toto.findById(req.params.id);
-	res.render("todo", { todo });
+	const item = await toto.findById(req.params.id);
+	res.render("item", { item });
 };
 
 module.exports.createTodo = async (req, res) => {
@@ -11,7 +11,7 @@ module.exports.createTodo = async (req, res) => {
 	} = req;
 
 	try{
-		const firstTodo = await todo({
+		const firstTodo = await item({
 			name,
 			content,
 			created_date,
@@ -22,7 +22,7 @@ module.exports.createTodo = async (req, res) => {
 		console.log(err);
 	}
 
-	const lastTodo = await todo.findOne({}).sort({ _id: -1 }).limit(1);
+	const lastTodo = await item.findOne({}).sort({ _id: -1 }).limit(1);
 	if (lastTodo) {
 		const lastTodoTime = lastTodo.createdAt.getTime();
 		const currentTime = new Date().getTime();
@@ -30,7 +30,7 @@ module.exports.createTodo = async (req, res) => {
 			return res.status(429).send("You must wait 30 min");
 		}
 	}
-	const LastTodo = await todo({
+	const LastTodo = await item({
 		name,
 		content,
 		created_date,
@@ -40,8 +40,8 @@ module.exports.createTodo = async (req, res) => {
 };
 
 module.exports.getTodoById = async (req, res) => {
-	const todo = await toto.findById(req.params.id);
-	res.render("todo", { todo });
+	const item = await toto.findById(req.params.id);
+	res.render("item", { item });
 }
 
 

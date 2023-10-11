@@ -33,13 +33,13 @@ class TodoList {
 			throw new Error("User is not valid");
 		}
 		if (this.items.length >= 10) {
-			throw new Error("Todo list is full");
+			throw new Error("Item list is full");
 		}
 		if (!item.isValidTodo()) {
-			throw new Error("Invalid todo");
+			throw new Error("Invalid item");
 		}
 		if (!this.isUniqueName(item.name)) {
-			throw new Error("Todo name is not unique");
+			throw new Error("Item name is not unique");
 		}
 		if (!this.lastItemBeforeThirtyMinutes()) {
 			throw new Error("Last item is not older than 30 minutes");

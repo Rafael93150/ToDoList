@@ -1,4 +1,4 @@
-class Todo {
+class Item {
 	constructor({ name, content, createdAt }) {
 		this.name = name;
 		this.content = content;
@@ -16,4 +16,4 @@ class Todo {
     
 }
 
-module.exports = Todo;
+module.exports = Item;
