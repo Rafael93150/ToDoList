@@ -9,7 +9,7 @@ class User {
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.birthdate = new Date(birthdate);
+		this.birthdate = birthdate;
 		this.password = password;
 		this.todolist = null;
 	}

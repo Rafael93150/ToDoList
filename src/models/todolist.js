@@ -1,8 +1,10 @@
-const isUserValid = require("../models/user");
+const EmailSenderService = require("./emailsenderservice");
 
 class TodoList {
-	constructor() {
+	constructor(user) {
+		this.user = user;
 		this.items = [];
+        this.sender = new EmailSenderService();
 	}
 
 	isUniqueName(name) {
@@ -27,7 +29,7 @@ class TodoList {
 	}
 
 	add(item) {
-		if (!isUserValid()) {
+		if (!this.user.isUserValid()) {
 			throw new Error("User is not valid");
 		}
 		if (this.items.length >= 10) {
@@ -44,7 +46,7 @@ class TodoList {
 		}
 		this.items.push(item);
 		if (this.items.length === 8) {
-			EmailSenderService.send();
+			this.sender.send();
 		}
 	}
 }
