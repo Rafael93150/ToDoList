@@ -13,7 +13,7 @@ discribe("Todo", () => {
     it("should be invalid if content is empty", () => {
         const todo = new Todo({
             name: "name",
-            content: "",
+            content: "", 
             created_date: Date.now(),
         });
         expect(todo.isValidTodo()).toBeFalsy();
