@@ -7,13 +7,44 @@ module.exports.getTodoById = async (req, res) => {
 
 module.exports.createTodo = async (req, res) => {
 	const {
-		body: { name, content },
+		body: { name, content,created_date },
 	} = req;
 
-	const todo = new toto({
+	try{
+		const firstTodo = await todo({
+			name,
+			content,
+			created_date,
+		});
+		await firstTodo.save();
+		res.redirect("/");
+	}catch(err){
+		console.log(err);
+	}
+
+	const lastTodo = await todo.findOne({}).sort({ _id: -1 }).limit(1);
+	if (lastTodo) {
+		const lastTodoTime = lastTodo.createdAt.getTime();
+		const currentTime = new Date().getTime();
+		if (currentTime - lastTodoTime < 1800000) {
+			return res.status(429).send("You must wait 30 min");
+		}
+	}
+	const LastTodo = await todo({
 		name,
 		content,
+		created_date,
 	});
 
-	await todo.save();
+	await LastTodo.save();
 };
+
+
+
+module.exports.getTodoById = async (req, res) => {
+	const todo = await toto.findById(req.params.id);
+	res.render("todo", { todo });
+}
+
+
+
