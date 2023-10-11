@@ -1,4 +1,4 @@
-const User = require("./user");
+const User = require("../models/user");
 
 test("L'utilisateur a tout renseigné correctement", () => {
 	const user = new User({
