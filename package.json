@@ -1,0 +1,14 @@
+{
+  "name": "user",
+  "version": "1.0.0",
+  "description": "",
+  "main": "user.js",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC"
+}
