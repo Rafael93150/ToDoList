@@ -1,6 +1,6 @@
 const Todo= require("../models/todo");
 
-discribe("Todo", () => {
+describe("Todo", () => {
     it("should be invalid if name is empty", () => {
         const todo = new Todo({
             name: "",
@@ -26,7 +26,7 @@ discribe("Todo", () => {
             content: "content".repeat(1001),
             created_date: Date.now(),
         });
-        expect(todo.isValidTodo()).toBe(true);
+        expect(todo.isValidTodo()).toBeFalsy();
         }
     )
 

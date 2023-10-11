@@ -6,13 +6,16 @@ class Todo {
         this.name = name;
         this.content = content;
         this.createdAt = createdAt;
-    }
+    };
 
-    isValidTodo(){
-        this.name.trim().length > 0 &&
-        this.content.trim().length > 0 &&
-        this.content.length <= 1000
+    isValidTodo() {
+        return (
+            this.name.trim().length > 0 &&
+            this.content.trim().length > 0 &&
+            this.content.length <= 1000
+        );
     }
+    
 }
 
 module.exports = Todo;

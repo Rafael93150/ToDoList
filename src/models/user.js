@@ -1,10 +1,10 @@
 const UserModel = require("../schemas/user.js");
 const Todolist = require("./todolist.js");
-const { v4: uuid } = require("uuid");
+// const { v4: uuid } = require("uuid");
 
 class User {
 	constructor({ email, firstName, lastName, birthdate, password }) {
-		this.id = uuid();
+		// this.id = uuid();
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
