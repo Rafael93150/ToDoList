@@ -1,4 +1,5 @@
 const UserModel = require("../schemas/user.js");
+const TodoList = require("./todolist.js");
 const Todolist = require("./todolist.js");
 // const { v4: uuid } = require("uuid");
 
@@ -39,7 +40,7 @@ class User {
 	addTodoList(todoList) {
 		if (!this.isUserValid()) throw new Error("User is not valid");
 		if (this.todolist) throw new Error("User already has a todolist");
-		if (!typeof todoList !== "object" || !todoList instanceof TodoList)
+		if (typeof todoList !== "object" || !todoList instanceof TodoList)
 			throw new Error("TodoList is not a TodoList object");
 		this.todolist = new Todolist();
 	}

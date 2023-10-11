@@ -1,12 +1,9 @@
-
-
 class Todo {
-
-    constructor({ name, content, createdAt }) {
-        this.name = name;
-        this.content = content;
-        this.createdAt = createdAt;
-    };
+	constructor({ name, content, createdAt }) {
+		this.name = name;
+		this.content = content;
+		this.createdAt = createdAt;
+	}
 
     isValidTodo() {
         return (
