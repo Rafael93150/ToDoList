@@ -1,7 +1,6 @@
 const TodoList = require("../models/todolist");
 const Todo = require("../models/todo");
 const User = require("../models/user");
-const EmailSenderService = require("../models/emailsenderservice");
 
 describe("add", () => {
 	let todoList;
@@ -15,6 +14,7 @@ describe("add", () => {
 			birthdate: new Date("2000-01-01"),
 			password: "Password1",
 		});
+
 		todoList = new TodoList(user);
 	});
 
@@ -99,11 +99,10 @@ describe("add", () => {
 			createdAt: new Date(),
 		});
 
-        const emailSender = new EmailSenderService();
-		const sendSpy = jest.spyOn(emailSender, "send");
+		// const sendSpy = jest.spyOn(todoList.sender, "send");
+        const sendSpy = todoList.sender.send = jest.fn();
 		todoList.items = new Array(7).fill({});
 		todoList.add(item);
 		expect(sendSpy).toHaveBeenCalled();
-		sendSpy.mockRestore();
 	});
 });

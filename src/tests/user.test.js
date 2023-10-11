@@ -33,9 +33,14 @@ describe("isUserValid", () => {
 		expect(user.isUserValid()).toBe(false);
 	});
 
-	it("L'utilisateur n'a pas renseigné une date de naissance valide", () => {
-		(user.birthdate = new Date("2015-01-01")),
-			expect(user.isUserValid()).toBe(false);
+	it("L'utilisateur n'a pas 13 ans", () => {
+		user.birthdate = new Date("2015-01-01");
+		expect(user.isUserValid()).toBe(false);
+	});
+
+	it("L'utilisateur n'a pas renseigné une date valide", () => {
+		user.birthdate = "Invalid date";
+		expect(user.isUserValid()).toBe(false);
 	});
 
 	it("L'utilisateur n'a pas renseigné un email valide", () => {

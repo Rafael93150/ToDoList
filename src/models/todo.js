@@ -9,7 +9,8 @@ class Todo {
         return (
             this.name.trim().length > 0 &&
             this.content.trim().length > 0 &&
-            this.content.length <= 1000
+            this.content.length <= 1000 &&
+			this.createdAt instanceof Date && !isNaN(this.createdAt)
         );
     }
     

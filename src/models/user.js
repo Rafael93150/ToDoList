@@ -1,11 +1,9 @@
 const UserModel = require("../schemas/user.js");
 const TodoList = require("./todolist.js");
 const Todolist = require("./todolist.js");
-// const { v4: uuid } = require("uuid");
 
 class User {
 	constructor({ email, firstName, lastName, birthdate, password }) {
-		// this.id = uuid();
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -24,16 +22,19 @@ class User {
 		return regex.test(this.password);
 	}
 
-	isUserValid() {
-		const hasAtLeast13Years =
-			new Date().getFullYear() - this.birthdate.getFullYear() >= 13;
+	hasAtLeast13Years() {
+		return new Date().getFullYear() - this.birthdate.getFullYear() >= 13;
+	}
 
+	isUserValid() {
 		return (
 			this.isValidEmail() &&
 			this.isValidPassword() &&
 			this.firstName.trim().length > 0 &&
 			this.lastName.trim().length > 0 &&
-			hasAtLeast13Years
+			this.birthdate instanceof Date &&
+			!isNaN(this.birthdate) &&
+			this.hasAtLeast13Years()
 		);
 	}
 
