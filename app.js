@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const users = require("./src/router/usersRouter.js");
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
 	);
 	next();
 });
+
+app.use("/users", users);
 
 // MongoDB connection
 try {

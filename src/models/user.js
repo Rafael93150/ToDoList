@@ -1,9 +1,11 @@
+const UserModel = require("../schemas/user.js");
+
 class User {
 	constructor({ email, firstName, lastName, birthdate, password }) {
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.birthdate = birthdate;
+		this.birthdate = new Date(birthdate);
 		this.password = password;
 	}
 
@@ -28,6 +30,28 @@ class User {
 			this.lastName.trim().length > 0 &&
 			hasAtLeast13Years
 		);
+	}
+
+	async saveToDatabase() {
+		console.log(this.isUserValid());
+		if (this.isUserValid()) {
+			const userDocument = new UserModel({
+				email: this.email,
+				firstName: this.firstName,
+				lastName: this.lastName,
+				birthdate: this.birthdate,
+				password: this.password,
+			});
+
+			try {
+				const savedUser = await userDocument.save();
+				return savedUser;
+			} catch (error) {
+				throw error;
+			}
+		} else {
+			throw new Error("L'utilisateur n'est pas valide.");
+		}
 	}
 }
 
