@@ -1,4 +1,4 @@
-const todo = require("../models/todo");
+const todo = require("../schemas/todo");
 
 module.exports.getTodoById = async (req, res) => {
 	const todo = await toto.findById(req.params.id);
@@ -38,8 +38,6 @@ module.exports.createTodo = async (req, res) => {
 
 	await LastTodo.save();
 };
-
-
 
 module.exports.getTodoById = async (req, res) => {
 	const todo = await toto.findById(req.params.id);

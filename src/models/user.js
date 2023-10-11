@@ -1,4 +1,5 @@
 const UserModel = require("../schemas/user.js");
+const Todolist = require("./todolist.js");
 
 class User {
 	constructor({ email, firstName, lastName, birthdate, password }) {
@@ -7,6 +8,7 @@ class User {
 		this.lastName = lastName;
 		this.birthdate = new Date(birthdate);
 		this.password = password;
+		this.todolist = null;
 	}
 
 	isValidEmail() {
@@ -30,6 +32,10 @@ class User {
 			this.lastName.trim().length > 0 &&
 			hasAtLeast13Years
 		);
+	}
+	
+	addTodoList(){
+		this.todolist = new Todolist();
 	}
 
 	async saveToDatabase() {

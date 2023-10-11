@@ -1,22 +1,17 @@
-const mongoose = require('mongoose');
+class Todo {
+	constructor({ name, content, createdAt, createdBy }) {
+		this.name = name;
+		this.content = content;
+		this.createdAt = createdAt;
+		this.createdBy = createdBy;
+	}
 
-const todoSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: 'Name cannot be blank!',
-        unique: true
-    },
-    content: {
-        type: String,
-        required: 'Content cannot be blank!',
-        type: String,
-        max: 100
-    },
-    created_date: {
-        type: Date,
-        default: Date.now
-    }
-});
+	isValidTodo() {
+		this.name.trim().length > 0 &&
+			this.content.trim().length > 0 &&
+			this.content.length <= 1000 &&
+			this.createdBy;
+	}
+}
 
-const Todo = mongoose.model('Todo', todoSchema);
 module.exports = Todo;
